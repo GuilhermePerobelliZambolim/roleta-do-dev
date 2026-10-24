@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pr-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+<title>Roleta do DEV | v1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=M+PLUS+Code+Latin:wght@100..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+</head>
+<body>
+
+<header>
+    <div id="identidade">
+        <div class="logo">
+            <p id="codeHeader">&lt;/&gt;</p>
+
+            <div class="textos-logo">
+                <h2>Roleta-do-dev</h2>
+                <p>DESAFIOS DE PROGRAMAÇÃO</p>
+            </div>
+        </div>
+
+        <div>
+            <span class="versao">v1</span>
+        </div>
+    </div>
+</header>
+
+
+    <div id="divUp">
+        <h1 id="h1">HORA DE CODAR!</h1>
+        <h3 id="h3">APRENDA PRATICANDO!</h3>
+        <p id="divUpParagrafo">Escolha suas configurações e deixe a roleta decidir seu próximo desafio.</p>
+    </div>
+    
+<main>
+    <label for="linguagem" id="linguagem1">Linguagem</label>
+    <select id="linguagem">
+      <option value="javascript" selected>JavaScript</option>
+      <option value="python">Python</option>
+      <option value="java">Java</option>
+      <option value="csharp">C#</option>
+      <option value="c++">C++</option>
+      <option value="php">PHP</option>
+    </select>
+    
+    <label for="dificuldade" id="dificuldade1">Dificuldade</label>
+    <select id="dificuldade">
+      <option value="iniciante" selected>Iniciante</option>
+      <option value="estagiario">Estagiario</option>
+      <option value="junior">Junior</option>
+      <option value="pleno">Pleno</option>
+      <option value="senior">Senior</option>
+      <option value="dark">Mas que P@#..</option>
+    </select>
+
+    <div id="botao">
+        <button type="button">🔃︎ GIRAR A ROLETA</button>
+    </div>
+
+        <section id="section">
+        <div id="fim-1">
+        <h3>
+            <span class="material-symbols-outlined icone">track_changes</span>
+            Seu desafio aparecerá aqui
+        </h3>
+
+        <p>O enunciado do exercício sorteado aparecerá nesta área.</p>
+        <hr>
+        </div>
+        
+        <div id="fim-2">
+            <h3>
+                <span class="material-symbols-outlined icone">lightbulb</span>
+                Dica
+            </h3>
+
+            <p>Uma pista para ajudar voce a resolver o desafio.</p>
+
+            <h3>
+                <span class="material-symbols-outlined icone">schedule</span>
+                Tempo estimado
+            </h3>
+
+            <p>O tempo previsto para concluir o desafio, de acordo com o seu nivel e a 
+            complexidade do exercicio.
+            </p>
+        </div>
+    </section>
+</main>
+
+
+    <footer>
+        <span>ROLETA-DO-DEV</span>
+        <p>APRENDA ⭢ PRATIQUE ⭢ EVOLUA</p>
+    </footer>
+
+    <script src="index.js" defer></script>
+</body>
+</html>
