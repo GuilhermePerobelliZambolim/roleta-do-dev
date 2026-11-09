@@ -1,0 +1,29 @@
+
+@import "tailwindcss";
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    font-family: "Cascadia Code", sans-serif;
+  }
+
+  html {
+    min-width: 320px;
+    background-color: #0F1410;
+  }
+
+  body {
+    min-height: 100vh;
+    margin: 0;
+    background-color: #0F1410;
+  }
+}
+
+:root {
+  --background: #0F1410;
+  --fundoDosCamposECartao: #1C231A;
+  --Bordas: #343F2D;
+  --Verde-limao-principal: #B4F542;
+  --texto-principal: #E8E4E5;
+  --texto-secundario: #A4AC9D;
+}
