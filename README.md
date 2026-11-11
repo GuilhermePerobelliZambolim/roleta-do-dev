@@ -14,7 +14,7 @@ Em desenvolvimento.
 
 ## Preview
 
-![Roleta-do-DEV - Interface da aplicação](../roleta-do-dev/frontend/public/images.png)
+![Roleta-do-DEV - Interface da aplicação](./frontend/src/assets/images.png)
 
 ## Funcionalidades
 

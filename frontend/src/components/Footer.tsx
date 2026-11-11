@@ -12,7 +12,7 @@ export default function Footer() {
       <div className="mt-5 flex flex-col items-center gap-2 border-t border-[#343F2D] pt-4">
         <p className="text-xs text-[#A4AC9D]">
           Desenvolvido por{" "}
-          <span className="font-semi text-[#E8E4E5]">
+          <span className="font-semi text-[#9b8ad1]">
             Guilherme Perobelli Zambolim
           </span>
         </p>
