@@ -4,7 +4,7 @@ import SeletorDesafio from "./components/SeletorDesafio";
 import ResultadoDesafio from "./components/ResultadoDesafio";
 import { useState, useEffect } from "react";
 import type { Linguagem, Dificuldade, Desafio } from "./types";
-import { desafios } from "./data/desafios";
+
 
 function App() {
   const [linguagem, setLinguagemSelecionada] =
