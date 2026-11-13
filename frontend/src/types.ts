@@ -3,7 +3,7 @@ export type Linguagem =
   | "python"
   | "java"
   | "csharp"
-  | "c++"
+  | "cpp"
   | "php";
 
 export type Dificuldade =
@@ -16,9 +16,7 @@ export type Dificuldade =
 
 export type Desafio = {
   id: string;
-  linguagem: Linguagem;
-  dificuldade: Dificuldade;
-  enunciado: string;
+  descricao: string;
   dica: string;
-  tempo: number;
+  tempoEstimado: number;
 };

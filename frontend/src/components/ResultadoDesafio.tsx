@@ -24,7 +24,7 @@ export default function ResultadoDesafio({
         </h3>
 
         <p className="text-[0.75rem] text-[#A4AC9D]">
-          {desafio?.enunciado ||
+          {desafio?.descricao ||
             "O enunciado do exercício sorteado aparecerá nesta área."}
         </p>
 

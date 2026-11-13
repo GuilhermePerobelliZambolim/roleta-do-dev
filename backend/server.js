@@ -1,8 +1,11 @@
+import cors from "cors";
 import express from "express";
 import desafios from "./data/arquivosDesafios.js";
 import { acharDesafio, sortearDesafio } from "./utils/desafios.js";
 const app = express();
 
+
+app.use(cors());
 app.use(express.json());
 
 // Retorna todos os desafios

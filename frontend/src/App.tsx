@@ -5,7 +5,6 @@ import ResultadoDesafio from "./components/ResultadoDesafio";
 import { useState, useEffect } from "react";
 import type { Linguagem, Dificuldade, Desafio } from "./types";
 
-
 function App() {
   const [linguagem, setLinguagemSelecionada] =
     useState<Linguagem>("javascript");
@@ -26,24 +25,23 @@ function App() {
     return () => clearInterval(intervalo);
   }, [tempoRestante]);
 
-  function girarRoleta() {
-    const desafiosFiltrados = desafios.filter((desafio) => {
-      return (
-        desafio.dificuldade === dificuldade && desafio.linguagem === linguagem
+  async function girarRoleta() {
+    try {
+      const resposta = await fetch(
+        `http://localhost:3000/desafios/${linguagem}/${dificuldade}/sortear`,
       );
-    });
-    if (desafiosFiltrados.length === 0) {
-      console.log("Nenhum desafio encontrado!");
-      return;
+
+      if (!resposta.ok) {
+        throw new Error(`Erro HTTP: ${resposta.status}`);
+      }
+
+      const dados = await resposta.json();
+
+      setDesafio(dados);
+      setTempoRestante(dados.tempoEstimado * 60);
+    } catch (erro) {
+      console.log("Ocorreu um erro:", erro);
     }
-
-    const quantidade = desafiosFiltrados.length;
-
-    const indiceAleatorio = Math.floor(Math.random() * quantidade);
-
-    const desafioSorteado = desafiosFiltrados[indiceAleatorio];
-    setDesafio(desafioSorteado);
-    setTempoRestante(desafioSorteado.tempo * 60);
   }
 
   return (
