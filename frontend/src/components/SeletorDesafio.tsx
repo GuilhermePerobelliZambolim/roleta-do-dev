@@ -15,7 +15,6 @@ export default function SeletorDesafio({
   onLinguagemChange,
   onDificuldadeChange,
 }: SeletorDesafioProps) {
-  
   return (
     <div className="flex w-full flex-col">
       <label htmlFor="linguagem" className="mb-2 text-[0.9rem] text-[#E8E4E5]">
@@ -25,7 +24,7 @@ export default function SeletorDesafio({
       <select
         id="linguagem"
         value={linguagem}
-        onChange={(event) => onLinguagemChange(event.target.value)}
+        onChange={(event) => onLinguagemChange(event.target.value as Linguagem)}
         className="my-[0.4rem] w-full rounded-[0.4rem] border border-[#343F2D] bg-[#1C231A] p-[0.7rem] text-[0.7rem] text-[#E8E4E5] outline-none"
       >
         <option value="javascript">JavaScript</option>
@@ -46,7 +45,9 @@ export default function SeletorDesafio({
       <select
         id="dificuldade"
         value={dificuldade}
-        onChange={(event) => onDificuldadeChange(event.target.value)}
+        onChange={(event) =>
+          onDificuldadeChange(event.target.value as Dificuldade)
+        }
         className="my-[0.4rem] w-full rounded-[0.4rem] border border-[#343F2D] bg-[#1C231A] p-[0.7rem] text-[0.7rem] text-[#E8E4E5] outline-none"
       >
         <option value="iniciante">Iniciante</option>

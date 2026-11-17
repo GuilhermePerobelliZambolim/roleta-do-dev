@@ -28,7 +28,7 @@ function App() {
   async function girarRoleta() {
     try {
       const resposta = await fetch(
-        `http://localhost:3000/desafios/${linguagem}/${dificuldade}/sortear`,
+        `${import.meta.env.VITE_API_URL}/desafios/${linguagem}/${dificuldade}/sortear`,
       );
 
       if (!resposta.ok) {

@@ -16,7 +16,11 @@ export type Dificuldade =
 
 export type Desafio = {
   id: string;
+  titulo: string;
+  categoria: string;
   descricao: string;
   dica: string;
   tempoEstimado: number;
+  linguagem: Linguagem;
+  dificuldade: Dificuldade;
 };
