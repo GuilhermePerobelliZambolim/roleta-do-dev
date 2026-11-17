@@ -1,7 +1,5 @@
 import cors from "cors";
 import express from "express";
-import desafios from "./data/arquivosDesafios.js";
-import { acharDesafio, sortearDesafio } from "./utils/desafios.js";
 import { prisma } from "./database/prisma.js";
 const app = express();
 
@@ -9,8 +7,18 @@ app.use(cors());
 app.use(express.json());
 
 // Retorna todos os desafios
-app.get("/desafios", (req, res) => {
-  res.json(desafios);
+app.get("/desafios", async (req, res) => {
+  try {
+    const desafios = await prisma.challenge.findMany();
+
+    res.json(desafios);
+  } catch (error) {
+    console.error("Erro ao consultar os desafios:", error);
+
+    res.status(500).json({
+      message: "Erro ao consultar o banco de dados!",
+    });
+  }
 });
 
 // Teste inicial
@@ -85,39 +93,65 @@ app.get("/teste-filtro", async (req, res) => {
     console.error("Erro ao filtrar!", error);
 
     res.status(500).json({
-      message: "Erro ao filtrar o desafio no banco de dados!"
+      message: "Erro ao filtrar o desafio no banco de dados!",
     });
   }
-})
+});
 
 // Retorna desafios por linguagem e dificuldade
-app.get("/desafios/:linguagem/:dificuldade", (req, res) => {
-  const { linguagem, dificuldade } = req.params;
+app.get("/desafios/:linguagem/:dificuldade", async (req, res) => {
+  try {
+    const { linguagem, dificuldade } = req.params;
 
-  const desafio = desafios[linguagem]?.dificuldades?.[dificuldade];
+    const desafios = await prisma.challenge.findMany({
+      where: {
+        linguagem: linguagem,
+        dificuldade: dificuldade,
+      },
+    });
 
-  if (!desafio) {
-    return res.status(404).json({
-      message: "Desafio não encontrado!",
+    if (desafios.length === 0) {
+      return res.status(404).json({
+        message: "Desafio não encontrado!",
+      });
+    }
+
+    res.json(desafios);
+  } catch (error) {
+    console.error("Erro ao filtrar desafios:", error);
+
+    res.status(500).json({
+      message: "Erro ao consultar o banco de dados!",
     });
   }
-
-  res.json(desafio);
 });
 
-app.get("/desafios/:linguagem/:dificuldade/sortear", (req, res) => {
-  const { linguagem, dificuldade } = req.params;
-  const desafio1 = acharDesafio(linguagem, dificuldade);
-  const desafioSorteado = sortearDesafio(desafio1);
+app.get("/desafios/:linguagem/:dificuldade/sortear", async (req, res) => {
+  try {
+    const { linguagem, dificuldade } = req.params;
+    const resultado = await prisma.$queryRaw`
+  SELECT *
+  FROM "Challenge"
+  WHERE "linguagem" = ${linguagem}
+  AND "dificuldade" = ${dificuldade}
+  ORDER BY RANDOM()
+  LIMIT 1
+  `;
 
-  if (!desafioSorteado) {
-    res.status(404).json({ message: "Not found!" });
-  } else {
-    res.status(200).json(desafioSorteado);
+    if (resultado.length === 0) {
+      res.status(404).json({ message: "Not found!" });
+    } else {
+      res.status(200).json(resultado[0]);
+    }
+  } catch (error) {
+    console.error("Erro ao sortear desafio:", error);
+    res.status(500).json({
+      message: "Erro ao buscar desafio no banco de dados!",
+    });
   }
 });
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
