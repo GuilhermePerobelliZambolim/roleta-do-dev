@@ -4,7 +4,11 @@ import { prisma } from "./database/prisma.js";
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https://roleta-do-dev.netlify.app", "http://localhost:5173"],
+  }),
+);
 app.use(express.json());
 
 // Retorna todos os desafios
